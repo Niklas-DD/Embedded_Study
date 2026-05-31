@@ -134,7 +134,7 @@ int main(void)
     // 方法5: 完整运动控制（位置+速度+力矩+PD增益）
     // RobStride_Motor_move_control(&motor1, 2.0f, 0.0f, 0.0f, 10.0f, 0.5f);
     // 参数: 力矩(Nm), 位置(rad), 速度(rad/s), Kp, Kd
-    send_chassis_cur1_4(0.0f, 1000.0f, 0.0f);
+    //send_chassis_cur1_4(0.0f, 1000.0f, 0.0f);
     HAL_Delay(10);
 
     /* USER CODE END WHILE */
