@@ -32,6 +32,7 @@ dm\rs02.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h
 dm\rs02.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h
 dm\rs02.o: C:\Laboratory\keil\ARM\ARMCC\Bin\..\include\string.h
 dm\rs02.o: C:\Laboratory\keil\ARM\ARMCC\Bin\..\include\stdbool.h
-dm\rs02.o: ..\lib\dm_motor_drv.h
+dm\rs02.o: ..\lib\Dji3508.h
 dm\rs02.o: ../Core/Inc/can.h
+dm\rs02.o: ..\lib\dm_motor_drv.h
 dm\rs02.o: ..\lib\bsp_can.h

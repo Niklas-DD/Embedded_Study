@@ -57,7 +57,7 @@
 RobStride_Motor motor1;                 // RS02电机实例
 static uint32_t rs02_last_cmd_tick = 0; // 上次发送命令的时间戳
 static uint8_t rs02_inited = 0;         // RS02初始化标志位
-
+Motor3LoopCtrl_t motor1_3loop;
 extern CAN_HandleTypeDef hcan1; // 外部声明CAN句柄
 /* USER CODE END PV */
 
@@ -152,17 +152,22 @@ int main(void)
   MX_GPIO_Init();
   MX_CAN1_Init();
   /* USER CODE BEGIN 2 */
-  RS02_UserInit(); // 执行RS02电机初始化
+  // RS02和3508电机的can总线同时初始化
+  RS02_UserInit();
+  // 3508的三环控制器初始化
+  Motor3Loop_Init(&motor1_3loop);
+  // RS02电机初始化
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-    RS02_Task();                    // 执行RS02电机控制任务
-    send_chassis_cur1_4(0, 800, 0); // 发送3508电机电流控制指令（ID1:0A, ID2:800mA, ID3:0A）
-    HAL_Delay(1);                   // 主循环延时1ms
-
+    RS02_Task();
+    motor1_3loop.target_speed = 500;
+    int16_t cur_cmd = Motor3Loop_Update(&motor1_3loop, &moto_chassis[1], 1); // 1表示恒速模式
+    send_chassis_cur1_4(0, cur_cmd, 0);
+    HAL_Delay(10);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */

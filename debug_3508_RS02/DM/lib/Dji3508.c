@@ -19,6 +19,85 @@ uint8_t data_current[8] = {0};
 motor_measure_t moto_chassis[8] = {0};
 moto_info_t motor_yaw_info;
 
+static float PID_Compute(PID_t *pid, float setpoint, float measured)
+{
+  float error = setpoint - measured; // 如果电机反向，可改为 measured - setpoint
+
+  // 积分限幅，防止越转越快
+  pid->integral += error;
+  if (pid->integral > pid->output_limit)
+    pid->integral = pid->output_limit;
+  if (pid->integral < -pid->output_limit)
+    pid->integral = -pid->output_limit;
+
+  float derivative = error - pid->last_error;
+  pid->last_error = error;
+
+  float output = pid->Kp * error + pid->Ki * pid->integral + pid->Kd * derivative;
+
+  // 输出限幅
+  if (output > pid->output_limit)
+    output = pid->output_limit;
+  if (output < -pid->output_limit)
+    output = -pid->output_limit;
+
+  return output;
+}
+
+// 初始化三环控制器
+void Motor3Loop_Init(Motor3LoopCtrl_t *ctrl)
+{
+  ctrl->pos_pid.Kp = 2.0f;
+  ctrl->pos_pid.Ki = 0.0f;
+  ctrl->pos_pid.Kd = 0.2f;
+  ctrl->pos_pid.integral = 0;
+  ctrl->pos_pid.last_error = 0;
+  ctrl->pos_pid.output_limit = 2000;
+
+  ctrl->speed_pid.Kp = 0.8f;
+  ctrl->speed_pid.Ki = 0.05f; // 降低Ki以减少积分累积
+  ctrl->speed_pid.Kd = 0.05f;
+  ctrl->speed_pid.integral = 0;
+  ctrl->speed_pid.last_error = 0;
+  ctrl->speed_pid.output_limit = 2000;
+
+  ctrl->current_pid.Kp = 1.0f;
+  ctrl->current_pid.Ki = 0.0f;
+  ctrl->current_pid.Kd = 0.0f;
+  ctrl->current_pid.integral = 0;
+  ctrl->current_pid.last_error = 0;
+  ctrl->current_pid.output_limit = 3000;
+
+  ctrl->target_pos = 0;
+  ctrl->target_speed = 0;
+}
+
+// 三环控制更新
+int16_t Motor3Loop_Update(Motor3LoopCtrl_t *ctrl, motor_measure_t *m, int speed_mode)
+{
+  if (speed_mode)
+  {
+    // 恒速模式：直接速度环输出
+    float cur_ref = PID_Compute(&ctrl->speed_pid, ctrl->target_speed, m->speed_rpm_filtered);
+    if (cur_ref > 3000)
+      cur_ref = 3000;
+    if (cur_ref < -3000)
+      cur_ref = -3000;
+    return (int16_t)cur_ref;
+  }
+  else
+  {
+    // 三环位置控制
+    float speed_ref = PID_Compute(&ctrl->pos_pid, ctrl->target_pos, m->total_angle_output);
+    float cur_ref = PID_Compute(&ctrl->speed_pid, speed_ref, m->speed_rpm_filtered);
+    float cur_final = PID_Compute(&ctrl->current_pid, cur_ref, m->real_current);
+    if (cur_final > 3000)
+      cur_final = 3000;
+    if (cur_final < -3000)
+      cur_final = -3000;
+    return (int16_t)cur_final;
+  }
+}
 // CAN??????
 void CAN_Filter_Init(void)
 {
