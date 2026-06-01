@@ -1,7 +1,7 @@
 Dependencies for Project 'DM', Target 'DM': (DO NOT MODIFY !)
 CompilerVersion: 5060528::V5.06 update 5 (build 528)::.\ARMCC
 F (startup_stm32f429xx.s)(0x6A1C0E19)(--cpu Cortex-M4.fp.sp -g --apcs=interwork -I.\RTE\_DM-IC:\Laboratory\keil\ARM\CMSIS\6.3.0\CMSIS\Core\Include--pd "__UVISION_VERSION SETA 543" --pd "STM32F429xx SETA 1" --pd "_RTE_ SETA 1"--list startup_stm32f429xx.lst --xref -o dm\startup_stm32f429xx.o --depend dm\startup_stm32f429xx.d)
-F (../Core/Src/main.c)(0x6A1C291A)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../lib -I ../../DM-I.\RTE\_DM-IC:\Laboratory\keil\ARM\CMSIS\6.3.0\CMSIS\Core\Include-D__UVISION_VERSION="543" -DSTM32F429xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F429xx-o dm\main.o --omf_browse dm\main.crf --depend dm\main.d)
+F (../Core/Src/main.c)(0x6A1CFF7F)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../lib -I ../../DM-I.\RTE\_DM-IC:\Laboratory\keil\ARM\CMSIS\6.3.0\CMSIS\Core\Include-D__UVISION_VERSION="543" -DSTM32F429xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F429xx-o dm\main.o --omf_browse dm\main.crf --depend dm\main.d)
 I (../Core/Inc/main.h)(0x6A105791)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x69AC4A31)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x6A1058DB)
@@ -34,10 +34,10 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h)(0x69AC4A31)
 I (../Core/Inc/can.h)(0x6A1058FF)
 I (../Core/Inc/gpio.h)(0x6A1058FF)
 I (../lib/bsp_can.h)(0x6A0F121B)
-I (../lib/Dji3508.h)(0x6A1AF16C)
 I (../lib/RS02.h)(0x6A1BB231)
 I (C:\Laboratory\keil\ARM\ARMCC\include\string.h)(0x588B8344)
 I (C:\Laboratory\keil\ARM\ARMCC\include\stdbool.h)(0x588B8344)
+I (../lib/Dji3508.h)(0x6A1AF16C)
 F (../Core/Src/gpio.c)(0x6A1058FF)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../lib -I ../../DM-I.\RTE\_DM-IC:\Laboratory\keil\ARM\CMSIS\6.3.0\CMSIS\Core\Include-D__UVISION_VERSION="543" -DSTM32F429xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F429xx-o dm\gpio.o --omf_browse dm\gpio.crf --depend dm\gpio.d)
 I (../Core/Inc/gpio.h)(0x6A1058FF)
 I (../Core/Inc/main.h)(0x6A105791)
@@ -704,7 +704,7 @@ I (C:\Laboratory\keil\ARM\ARMCC\include\stdbool.h)(0x588B8344)
 I (..\lib\dm_motor_drv.h)(0x6A0F121B)
 I (../Core/Inc/can.h)(0x6A1058FF)
 I (..\lib\bsp_can.h)(0x6A0F121B)
-F (..\lib\Dji3508.c)(0x6A1C0106)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../lib -I ../../DM-I.\RTE\_DM-IC:\Laboratory\keil\ARM\CMSIS\6.3.0\CMSIS\Core\Include-D__UVISION_VERSION="543" -DSTM32F429xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F429xx-o dm\dji3508.o --omf_browse dm\dji3508.crf --depend dm\dji3508.d)
+F (..\lib\Dji3508.c)(0x6A1CF725)(--c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../lib -I ../../DM-I.\RTE\_DM-IC:\Laboratory\keil\ARM\CMSIS\6.3.0\CMSIS\Core\Include-D__UVISION_VERSION="543" -DSTM32F429xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F429xx-o dm\dji3508.o --omf_browse dm\dji3508.crf --depend dm\dji3508.d)
 I (..\lib\Dji3508.h)(0x6A1AF16C)
 I (../Core/Inc/main.h)(0x6A105791)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x69AC4A31)

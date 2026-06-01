@@ -32,7 +32,7 @@ dm\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h
 dm\main.o: ../Core/Inc/can.h
 dm\main.o: ../Core/Inc/gpio.h
 dm\main.o: ../lib/bsp_can.h
-dm\main.o: ../lib/Dji3508.h
 dm\main.o: ../lib/RS02.h
 dm\main.o: C:\Laboratory\keil\ARM\ARMCC\Bin\..\include\string.h
 dm\main.o: C:\Laboratory\keil\ARM\ARMCC\Bin\..\include\stdbool.h
+dm\main.o: ../lib/Dji3508.h

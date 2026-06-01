@@ -52,10 +52,10 @@ void send_chassis_cur1_4(int16_t motor1, int16_t motor2, int16_t motor3)
 
   data_current[0] = motor1 >> 8;
   data_current[1] = motor1;
-   data_current[2] = motor2 >> 8;
-   data_current[3] = motor2;
-   data_current[4] = motor3 >> 8;
-   data_current[5] = motor3;
+  data_current[2] = motor2 >> 8;
+  data_current[3] = motor2;
+  data_current[4] = motor3 >> 8;
+  data_current[5] = motor3;
   //	data_current[6] = motor4 >> 8;
   //	data_current[7] = motor4;
 
@@ -207,45 +207,45 @@ uint8_t canx_receive(hcan_t *hcan, uint16_t *rec_id, uint8_t *buf)
 **/
 
 //????
-void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan)
-{
-  CAN_RxHeaderTypeDef rx_header;
-  uint8_t rx_data[8] = {0};
-  uint16_t rec_id[2];
+// void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan)
+// {
+//   CAN_RxHeaderTypeDef rx_header;
+//   uint8_t rx_data[8] = {0};
+//   uint16_t rec_id[2];
 
-  HAL_CAN_GetRxMessage(hcan, CAN_RX_FIFO0, &rx_header, rx_data);
+//   HAL_CAN_GetRxMessage(hcan, CAN_RX_FIFO0, &rx_header, rx_data);
 
-  if (hcan->Instance == CAN1)
-  {
-    rec_id[0] = rx_header.StdId;
-    // CAN1 -> ????
-    switch (rec_id[0])
-    {
-    case CAN_2006_M1_ID:
-    case CAN_2006_M2_ID:
-    case CAN_2006_M3_ID:
-    case CAN_2006_M4_ID:
-    {
-      uint8_t i = rx_header.StdId - CAN_2006_M1_ID;
-      get_motor_measure(&moto_chassis[i], rx_data);
-      get_total_angle(&moto_chassis[i]);
-      break;
-    }
+//   if (hcan->Instance == CAN1)
+//   {
+//     rec_id[0] = rx_header.StdId;
+//     // CAN1 -> ????
+//     switch (rec_id[0])
+//     {
+//     case CAN_2006_M1_ID:
+//     case CAN_2006_M2_ID:
+//     case CAN_2006_M3_ID:
+//     case CAN_2006_M4_ID:
+//     {
+//       uint8_t i = rx_header.StdId - CAN_2006_M1_ID;
+//       get_motor_measure(&moto_chassis[i], rx_data);
+//       get_total_angle(&moto_chassis[i]);
+//       break;
+//     }
 
-    default:
-      break;
-    }
-  }
-  else if (hcan->Instance == CAN2)
-  {
-    rec_id[1] = rx_header.StdId;
+//     default:
+//       break;
+//     }
+//   }
+//   else if (hcan->Instance == CAN2)
+//   {
+//     rec_id[1] = rx_header.StdId;
 
-    switch (rec_id[1])
-    {
-    case 0x0000:
-      dm_motor_fbdata(&motor[Motor1], rx_data);
-      receive_motor_data(&motor[Motor1], rx_data);
-      break;
-    }
-  }
-}
+//     switch (rec_id[1])
+//     {
+//     case 0x0000:
+//       dm_motor_fbdata(&motor[Motor1], rx_data);
+//       receive_motor_data(&motor[Motor1], rx_data);
+//       break;
+//     }
+//   }
+// }
