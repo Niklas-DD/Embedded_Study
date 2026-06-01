@@ -126,7 +126,7 @@ static void RS02_Task(void)
  * @retval int
  */
 int main(void)
-{
+ {
 
   /* USER CODE BEGIN 1 */
 
