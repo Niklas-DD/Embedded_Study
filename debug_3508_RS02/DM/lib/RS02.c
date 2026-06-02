@@ -16,6 +16,59 @@
 
 extern CAN_HandleTypeDef hcan1;
 uint32_t Mailbox;
+#define RS02_CAN_ID 0x01U            // RS02电机CAN ID
+#define RS02_MASTER_ID 0xFDU         // 主控CAN ID
+#define RS02_TARGET_SPEED_RAD_S 1.0f // 目标速度（弧度/秒）
+#define RS02_LIMIT_CURRENT_A 2.0f    // 限制电流（安培）
+#define RS02_CMD_PERIOD_MS 10U       // 控制命令发送周期（毫秒）
+
+extern RobStride_Motor motor1;          // RS02电机实例
+static uint32_t rs02_last_cmd_tick = 0; // 上次发送命令的时间戳
+static uint8_t rs02_inited = 0;         // RS02初始化标志位
+void RS02_UserInit(void)
+{
+    bsp_can_init(); // 初始化CAN底层驱动
+
+    RobStride_Motor_init(&motor1, RS02_CAN_ID, false); // 初始化RS02电机对象，ID=1，非MIT模式
+    motor1.Master_CAN_ID = RS02_MASTER_ID;             // 设置主控CAN ID
+    Disenable_Motor(&motor1, 1);                       // 禁用电机（确保初始状态安全）
+    HAL_Delay(20);                                     // 延时等待
+
+    Get_RobStride_Motor_parameter(&motor1, 0x7005); // 读取当前控制模式参数
+    HAL_Delay(20);                                  // 延时等待响应
+
+    Set_RobStride_Motor_parameter(&motor1, 0x7005, Speed_control_mode, Set_mode); // 设置为速度控制模式
+    HAL_Delay(5);                                                                 // 延时等待
+
+    Set_RobStride_Motor_parameter(&motor1, 0x7018, RS02_LIMIT_CURRENT_A, Set_parameter); // 设置电流限制为2A
+    HAL_Delay(5);                                                                        // 延时等待
+
+    Enable_Motor(&motor1); // 使能电机
+    HAL_Delay(20);         // 延时等待电机就绪
+
+    rs02_last_cmd_tick = HAL_GetTick(); // 记录初始时间戳
+    rs02_inited = 1;                    // 标记初始化完成
+}
+
+/**
+ * @brief RS02电机周期性任务函数
+ * @note 按照设定周期发送速度控制指令
+ */
+void RS02_Task(void)
+{
+    if (!rs02_inited) // 检查是否已完成初始化
+    {
+        return; // 未初始化则直接返回
+    }
+
+    // 检查是否到达控制周期
+    if ((HAL_GetTick() - rs02_last_cmd_tick) >= RS02_CMD_PERIOD_MS)
+    {
+        rs02_last_cmd_tick = HAL_GetTick(); // 更新时间戳
+        // 发送速度控制指令：目标速度1rad/s，电流限制2A
+        RobStride_Motor_Speed_control(&motor1, RS02_TARGET_SPEED_RAD_S, RS02_LIMIT_CURRENT_A);
+    }
+}
 // -------------------- 数据转换工具 --------------------
 float uint16_to_float(uint16_t x, float x_min, float x_max, int bits)
 {

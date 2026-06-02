@@ -114,8 +114,6 @@ typedef struct
 } RobStride_Motor;
 void RS02_UserInit(void); // RS02用户初始化函数
 void RS02_Task(void);     // RS02任务处理函数
-void RS02_PosPID_Init(void);
-static float RS02_PID_Compute(PID_t *pid, float target, float current);
 void RobStride_Motor_init(RobStride_Motor *motor, uint8_t CAN_Id, bool MIT_Mode);
 void RobStride_Motor_move_control(RobStride_Motor *motor, float Torque, float Angle, float Speed, float Kp, float Kd);
 void RobStride_Motor_MIT_Enable(RobStride_Motor *motor);
