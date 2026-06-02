@@ -46,17 +46,10 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-
-// RS02电机配置参数
-#define RS02_CAN_ID 0x01U            // RS02电机CAN ID
-#define RS02_MASTER_ID 0xFDU         // 主控CAN ID
-#define RS02_TARGET_SPEED_RAD_S 1.0f // 目标速度（弧度/秒）
-#define RS02_LIMIT_CURRENT_A 2.0f    // 限制电流（安培）
-#define RS02_CMD_PERIOD_MS 10U       // 控制命令发送周期（毫秒）
-
 RobStride_Motor motor1; // RS02电机实例
 Motor3LoopCtrl_t motor1_3loop;
 extern CAN_HandleTypeDef hcan1; // 外部声明CAN句柄
+uint8_t rxData[8] = {0};
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -174,27 +167,59 @@ void SystemClock_Config(void)
 
 /* USER CODE BEGIN 4 */
 /**
- * @brief CAN接收FIFO0消息 pending回调函数
- * @param hcan: CAN句柄指针
- * @note 用于接收并解析RS02电机反馈数据
+ * @brief  CAN 接收 FIFO0 消息 pending 回调
+ * @param  hcan: 指向 CAN 外设句柄
+ * @note   同时解析 RS02 电机和 DJI 3508 电机的反馈
  */
 void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan)
 {
-  CAN_RxHeaderTypeDef rxHeader; // CAN接收消息头
-  uint8_t rxData[8];            // CAN接收数据缓冲区
+  CAN_RxHeaderTypeDef rxHeader; // 接收帧头
 
-  if (hcan->Instance == CAN1) // 确认是CAN1外设
+  // 仅处理 CAN1 总线消息
+  if (hcan->Instance != CAN1)
   {
-    HAL_CAN_GetRxMessage(hcan, CAN_RX_FIFO0, &rxHeader, rxData); // 从FIFO0读取CAN消息
+    return;
+  }
 
-    // 根据帧类型选择正确的ID进行解析
-    if (rxHeader.IDE == CAN_ID_EXT)
+  // 从 FIFO0 获取一条 CAN 消息
+  if (HAL_CAN_GetRxMessage(hcan, CAN_RX_FIFO0, &rxHeader, rxData) != HAL_OK)
+  {
+    return;
+  }
+
+  if (rxHeader.IDE == CAN_ID_EXT)
+  {
+    // ------------------------------
+    // RS02 / RobStride 电机反馈：扩展帧
+    // 通过 ID_ExtId 解析电机数据
+    // ------------------------------
+    RobStride_Motor_Analysis(&motor1, rxData, rxHeader.ExtId);
+  }
+  else if (rxHeader.IDE == CAN_ID_STD)
+  {
+    // ------------------------------
+    // DJI 3508 电机反馈：标准帧 0x201~0x204
+    // 解析每个电机的角度、速度和电流
+    // ------------------------------
+    switch (rxHeader.StdId)
     {
-      RobStride_Motor_Analysis(&motor1, rxData, rxHeader.ExtId); // 解析扩展帧ID的电机数据
+    case CAN_2006_M1_ID:
+    case CAN_2006_M2_ID:
+    case CAN_2006_M3_ID:
+    case CAN_2006_M4_ID:
+    {
+      // 根据 StdId 计算电机索引
+      uint8_t i = rxHeader.StdId - CAN_2006_M1_ID;
+
+      // 更新电机角度和速度数据
+      get_motor_measure(&moto_chassis[i], rxData);
+      // 计算累计总角度
+      get_total_angle(&moto_chassis[i]);
+      break;
     }
-    else
-    {
-      RobStride_Motor_Analysis(&motor1, rxData, rxHeader.StdId); // 解析标准帧ID的电机数据
+      // default:
+      //   RobStride_Motor_Analysis(&motor1, rxData, rxHeader.StdId);
+      //   break;
     }
   }
 }

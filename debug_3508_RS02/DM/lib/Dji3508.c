@@ -13,15 +13,13 @@
 extern CAN_HandleTypeDef hcan1;
 
 CAN_TxHeaderTypeDef chassis_tx_message;
-uint8_t chassis_can_send_data[8] = {0}; //??????
 uint8_t data_current[8] = {0};
 
 motor_measure_t moto_chassis[8] = {0};
-moto_info_t motor_yaw_info;
 
 static float PID_Compute(PID_t *pid, float setpoint, float measured)
 {
-  float error = setpoint - measured; // 如果电机反向，可改为 measured - setpoint
+  float error = setpoint - measured;
 
   // 积分限幅，防止越转越快
   pid->integral += error;
