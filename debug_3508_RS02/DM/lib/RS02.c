@@ -13,7 +13,7 @@
 #define KD_MAX 5.0f
 #define T_MIN -17.0f
 #define T_MAX 17.0f
-#define RS02_TARGET_POS_RAD      5.00f   //目标位置
+#define RS02_TARGET_POS_RAD      6.00f   //目标位置
 #define RS02_LIMIT_SPEED_RAD_S   2.0f    // 位置控制最大速度
 
 extern CAN_HandleTypeDef hcan1;
