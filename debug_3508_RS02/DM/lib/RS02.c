@@ -13,9 +13,11 @@
 #define KD_MAX 5.0f
 #define T_MIN -17.0f
 #define T_MAX 17.0f
+#define RS02_TARGET_POS_RAD      5.00f   //目标位置
+#define RS02_LIMIT_SPEED_RAD_S   2.0f    // 位置控制最大速度
 
 extern CAN_HandleTypeDef hcan1;
-uint32_t Mailbox;
+uint32_t Mailboxc;
 #define RS02_CAN_ID 0x01U            // RS02电机CAN ID
 #define RS02_MASTER_ID 0xFDU         // 主控CAN ID
 #define RS02_TARGET_SPEED_RAD_S 1.0f // 目标速度（弧度/秒）
@@ -31,13 +33,14 @@ void RS02_UserInit(void)
 
     RobStride_Motor_init(&motor1, RS02_CAN_ID, false); // 初始化RS02电机对象，ID=1，非MIT模式
     motor1.Master_CAN_ID = RS02_MASTER_ID;             // 设置主控CAN ID
-    Disenable_Motor(&motor1, 1);                       // 禁用电机（确保初始状态安全）
+    Disenable_Motor(&motor1, 1);                       // 禁用电机
     HAL_Delay(20);                                     // 延时等待
 
     Get_RobStride_Motor_parameter(&motor1, 0x7005); // 读取当前控制模式参数
     HAL_Delay(20);                                  // 延时等待响应
 
-    Set_RobStride_Motor_parameter(&motor1, 0x7005, Speed_control_mode, Set_mode); // 设置为速度控制模式
+//    Set_RobStride_Motor_parameter(&motor1, 0x7005, Speed_control_mode, Set_mode); // 设置为速度控制模式
+	Set_RobStride_Motor_parameter(&motor1, 0x7005, Pos_control_mode, Set_mode);
     HAL_Delay(5);                                                                 // 延时等待
 
     Set_RobStride_Motor_parameter(&motor1, 0x7018, RS02_LIMIT_CURRENT_A, Set_parameter); // 设置电流限制为2A
@@ -66,7 +69,8 @@ void RS02_Task(void)
     {
         rs02_last_cmd_tick = HAL_GetTick(); // 更新时间戳
         // 发送速度控制指令：目标速度1rad/s，电流限制2A
-        RobStride_Motor_Speed_control(&motor1, RS02_TARGET_SPEED_RAD_S, RS02_LIMIT_CURRENT_A);
+        //RobStride_Motor_Speed_control(&motor1, RS02_TARGET_SPEED_RAD_S, RS02_LIMIT_CURRENT_A);
+		RobStride_Motor_Pos_control(&motor1, RS02_LIMIT_SPEED_RAD_S, RS02_TARGET_POS_RAD);
     }
 }
 // -------------------- 数据转换工具 --------------------
@@ -270,7 +274,7 @@ void RobStride_Get_CAN_ID(RobStride_Motor *motor)
                       ((uint32_t)motor->Master_CAN_ID << 8) |
                       motor->CAN_ID;
 
-    HAL_CAN_AddTxMessage(&hcan1, &TxMessage, txdata, &Mailbox);
+    HAL_CAN_AddTxMessage(&hcan1, &TxMessage, txdata, &Mailboxc);
 }
 
 void Enable_Motor(RobStride_Motor *motor)
@@ -294,7 +298,7 @@ void Enable_Motor(RobStride_Motor *motor)
                           ((uint32_t)motor->Master_CAN_ID << 8) |
                           motor->CAN_ID;
 
-        HAL_CAN_AddTxMessage(&hcan1, &TxMessage, txdata, &Mailbox);
+        HAL_CAN_AddTxMessage(&hcan1, &TxMessage, txdata, &Mailboxc);
     }
 }
 
@@ -320,7 +324,7 @@ void Disenable_Motor(RobStride_Motor *motor, uint8_t clear_error)
                           ((uint32_t)motor->Master_CAN_ID << 8) |
                           motor->CAN_ID;
 
-        HAL_CAN_AddTxMessage(&hcan1, &TxMessage, txdata, &Mailbox);
+        HAL_CAN_AddTxMessage(&hcan1, &TxMessage, txdata, &Mailboxc);
         Set_RobStride_Motor_parameter(motor, 0x7005, move_control_mode, Set_mode);
     }
 }
@@ -358,7 +362,7 @@ void Set_RobStride_Motor_parameter(RobStride_Motor *motor, uint16_t Index, float
         txdata[7] = 0x00;
     }
 
-    HAL_CAN_AddTxMessage(&hcan1, &TxMessage, txdata, &Mailbox);
+    HAL_CAN_AddTxMessage(&hcan1, &TxMessage, txdata, &Mailboxc);
 }
 
 void Get_RobStride_Motor_parameter(RobStride_Motor *motor, uint16_t Index)
@@ -379,7 +383,7 @@ void Get_RobStride_Motor_parameter(RobStride_Motor *motor, uint16_t Index)
                       ((uint32_t)motor->Master_CAN_ID << 8) |
                       motor->CAN_ID;
 
-    HAL_CAN_AddTxMessage(&hcan1, &TxMessage, txdata, &Mailbox);
+    HAL_CAN_AddTxMessage(&hcan1, &TxMessage, txdata, &Mailboxc);
 }
 
 // -------------------- 私有协议控制 --------------------
@@ -426,7 +430,7 @@ void RobStride_Motor_move_control(RobStride_Motor *motor, float Torque, float An
     txdata[6] = (uint8_t)(float_to_uint(motor->Motor_Set_All.set_Kd, KD_MIN, KD_MAX, 16) >> 8);
     txdata[7] = (uint8_t)(float_to_uint(motor->Motor_Set_All.set_Kd, KD_MIN, KD_MAX, 16));
 
-    HAL_CAN_AddTxMessage(&hcan1, &TxMessage, txdata, &Mailbox);
+    HAL_CAN_AddTxMessage(&hcan1, &TxMessage, txdata, &Mailboxc);
 }
 
 void RobStride_Motor_Pos_control(RobStride_Motor *motor, float Speed, float Angle)
@@ -543,7 +547,7 @@ void Set_CAN_ID(RobStride_Motor *motor, uint8_t Set_CAN_ID_Value)
                       ((uint32_t)motor->Master_CAN_ID << 8) |
                       motor->CAN_ID;
 
-    HAL_CAN_AddTxMessage(&hcan1, &TxMessage, txdata, &Mailbox);
+    HAL_CAN_AddTxMessage(&hcan1, &TxMessage, txdata, &Mailboxc);
 }
 
 void Set_ZeroPos(RobStride_Motor *motor)
@@ -564,7 +568,7 @@ void Set_ZeroPos(RobStride_Motor *motor)
                       motor->CAN_ID;
     txdata[0] = 1;
 
-    HAL_CAN_AddTxMessage(&hcan1, &TxMessage, txdata, &Mailbox);
+    HAL_CAN_AddTxMessage(&hcan1, &TxMessage, txdata, &Mailboxc);
     Enable_Motor(motor);
 }
 
@@ -583,7 +587,7 @@ void RobStride_Motor_MotorDataSave(RobStride_Motor *motor)
                       ((uint32_t)motor->Master_CAN_ID << 8) |
                       motor->CAN_ID;
 
-    HAL_CAN_AddTxMessage(&hcan1, &TxMessage, txdata, &Mailbox);
+    HAL_CAN_AddTxMessage(&hcan1, &TxMessage, txdata, &Mailboxc);
 }
 
 void RobStride_Motor_BaudRateChange(RobStride_Motor *motor, uint8_t F_CMD)
@@ -601,7 +605,7 @@ void RobStride_Motor_BaudRateChange(RobStride_Motor *motor, uint8_t F_CMD)
                       ((uint32_t)motor->Master_CAN_ID << 8) |
                       motor->CAN_ID;
 
-    HAL_CAN_AddTxMessage(&hcan1, &TxMessage, txdata, &Mailbox);
+    HAL_CAN_AddTxMessage(&hcan1, &TxMessage, txdata, &Mailboxc);
 }
 
 void RobStride_Motor_ProactiveEscalationSet(RobStride_Motor *motor, uint8_t F_CMD)
@@ -619,7 +623,7 @@ void RobStride_Motor_ProactiveEscalationSet(RobStride_Motor *motor, uint8_t F_CM
                       ((uint32_t)motor->Master_CAN_ID << 8) |
                       motor->CAN_ID;
 
-    HAL_CAN_AddTxMessage(&hcan1, &TxMessage, txdata, &Mailbox);
+    HAL_CAN_AddTxMessage(&hcan1, &TxMessage, txdata, &Mailboxc);
 }
 
 void RobStride_Motor_MotorModeSet(RobStride_Motor *motor, uint8_t F_CMD)
@@ -637,7 +641,7 @@ void RobStride_Motor_MotorModeSet(RobStride_Motor *motor, uint8_t F_CMD)
                       ((uint32_t)motor->Master_CAN_ID << 8) |
                       motor->CAN_ID;
 
-    HAL_CAN_AddTxMessage(&hcan1, &TxMessage, txdata, &Mailbox);
+    HAL_CAN_AddTxMessage(&hcan1, &TxMessage, txdata, &Mailboxc);
 }
 
 // -------------------- MIT 协议控制 --------------------
@@ -654,7 +658,7 @@ void RobStride_Motor_MIT_Enable(RobStride_Motor *motor)
     txMsg.RTR = CAN_RTR_DATA;
     txMsg.DLC = 8;
 
-    HAL_CAN_AddTxMessage(&hcan1, &txMsg, txdata, &Mailbox);
+    HAL_CAN_AddTxMessage(&hcan1, &txMsg, txdata, &Mailboxc);
 }
 
 void RobStride_Motor_MIT_Disable(RobStride_Motor *motor)
@@ -670,7 +674,7 @@ void RobStride_Motor_MIT_Disable(RobStride_Motor *motor)
     txMsg.RTR = CAN_RTR_DATA;
     txMsg.DLC = 8;
 
-    HAL_CAN_AddTxMessage(&hcan1, &txMsg, txdata, &Mailbox);
+    HAL_CAN_AddTxMessage(&hcan1, &txMsg, txdata, &Mailboxc);
 }
 
 void RobStride_Motor_MIT_ClearOrCheckError(RobStride_Motor *motor, uint8_t F_CMD)
@@ -686,7 +690,7 @@ void RobStride_Motor_MIT_ClearOrCheckError(RobStride_Motor *motor, uint8_t F_CMD
     txMsg.RTR = CAN_RTR_DATA;
     txMsg.DLC = 8;
 
-    HAL_CAN_AddTxMessage(&hcan1, &txMsg, txdata, &Mailbox);
+    HAL_CAN_AddTxMessage(&hcan1, &txMsg, txdata, &Mailboxc);
 }
 
 void RobStride_Motor_MIT_SetMotorType(RobStride_Motor *motor, uint8_t F_CMD)
@@ -702,7 +706,7 @@ void RobStride_Motor_MIT_SetMotorType(RobStride_Motor *motor, uint8_t F_CMD)
     txMsg.RTR = CAN_RTR_DATA;
     txMsg.DLC = 8;
 
-    HAL_CAN_AddTxMessage(&hcan1, &txMsg, txdata, &Mailbox);
+    HAL_CAN_AddTxMessage(&hcan1, &txMsg, txdata, &Mailboxc);
 }
 
 void RobStride_Motor_MIT_SetMotorId(RobStride_Motor *motor, uint8_t F_CMD)
@@ -718,7 +722,7 @@ void RobStride_Motor_MIT_SetMotorId(RobStride_Motor *motor, uint8_t F_CMD)
     txMsg.RTR = CAN_RTR_DATA;
     txMsg.DLC = 8;
 
-    HAL_CAN_AddTxMessage(&hcan1, &txMsg, txdata, &Mailbox);
+    HAL_CAN_AddTxMessage(&hcan1, &txMsg, txdata, &Mailboxc);
 }
 
 void RobStride_Motor_MIT_Control(RobStride_Motor *motor, float Angle, float Speed, float Kp, float Kd, float Torque)
@@ -743,7 +747,7 @@ void RobStride_Motor_MIT_Control(RobStride_Motor *motor, float Angle, float Spee
     txdata[6] = (uint8_t)((float_to_uint(Kd, KD_MIN, KD_MAX, 12) << 4) | (float_to_uint(Torque, T_MIN, T_MAX, 12) >> 8));
     txdata[7] = (uint8_t)(float_to_uint(Torque, T_MIN, T_MAX, 12));
 
-    HAL_CAN_AddTxMessage(&hcan1, &txMsg, txdata, &Mailbox);
+    HAL_CAN_AddTxMessage(&hcan1, &txMsg, txdata, &Mailboxc);
 }
 
 void RobStride_Motor_MIT_PositionControl(RobStride_Motor *motor, float position_rad, float speed_rad_per_s)
@@ -762,7 +766,7 @@ void RobStride_Motor_MIT_PositionControl(RobStride_Motor *motor, float position_
     memcpy(&txdata[0], &position_rad, 4);
     memcpy(&txdata[4], &speed_rad_per_s, 4);
 
-    HAL_CAN_AddTxMessage(&hcan1, &txMsg, txdata, &Mailbox);
+    HAL_CAN_AddTxMessage(&hcan1, &txMsg, txdata, &Mailboxc);
 }
 
 void RobStride_Motor_MIT_SpeedControl(RobStride_Motor *motor, float speed_rad_per_s, float current_limit)
@@ -781,7 +785,7 @@ void RobStride_Motor_MIT_SpeedControl(RobStride_Motor *motor, float speed_rad_pe
     memcpy(&txdata[0], &speed_rad_per_s, 4);
     memcpy(&txdata[4], &current_limit, 4);
 
-    HAL_CAN_AddTxMessage(&hcan1, &txMsg, txdata, &Mailbox);
+    HAL_CAN_AddTxMessage(&hcan1, &txMsg, txdata, &Mailboxc);
 }
 
 void RobStride_Motor_MIT_SetZeroPos(RobStride_Motor *motor)
@@ -797,5 +801,5 @@ void RobStride_Motor_MIT_SetZeroPos(RobStride_Motor *motor)
     txMsg.RTR = CAN_RTR_DATA;
     txMsg.DLC = 8;
 
-    HAL_CAN_AddTxMessage(&hcan1, &txMsg, txdata, &Mailbox);
+    HAL_CAN_AddTxMessage(&hcan1, &txMsg, txdata, &Mailboxc);
 }

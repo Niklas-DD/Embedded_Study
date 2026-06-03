@@ -3,7 +3,7 @@
 
 #include "main.h"
 #include "can.h"
-
+#include "bsp_can.h"
 // 3508??
 typedef struct
 {
@@ -87,7 +87,6 @@ void send_GM6020_voltage(int16_t v1, int16_t v2, int16_t v3, int16_t v4);
 void CAN2_Filter_Init(void);
 void send_GM6020_voltage_CAN2(int16_t v1, int16_t v2, int16_t v3, int16_t v4);
 
-typedef CAN_HandleTypeDef hcan_t;
 
 void bsp_can_init(void);
 void can_filter_init(void);

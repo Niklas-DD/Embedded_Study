@@ -46,7 +46,7 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-RobStride_Motor motor1; // RS02电机实例
+RobStride_Motor motor1; 
 Motor3LoopCtrl_t motor1_3loop;
 extern CAN_HandleTypeDef hcan1; // 外部声明CAN句柄
 uint8_t rxData[8] = {0};
@@ -99,7 +99,7 @@ int main(void)
   MX_CAN1_Init();
   /* USER CODE BEGIN 2 */
   // RS02和3508电机的can总线同时初始化
-  RS02_UserInit();
+ RS02_UserInit();
   // 3508的三环控制器初始化
   Motor3Loop_Init(&motor1_3loop);
   // RS02电机初始化
@@ -109,7 +109,7 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-    RS02_Task();
+	RS02_Task();
     motor1_3loop.target_speed = 500;
     int16_t cur_cmd = Motor3Loop_Update(&motor1_3loop, &moto_chassis[1], 1); // 1表示恒速模式
     send_chassis_cur1_4(0, cur_cmd, 0);
@@ -174,7 +174,6 @@ void SystemClock_Config(void)
 void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan)
 {
   CAN_RxHeaderTypeDef rxHeader; // 接收帧头
-
   // 仅处理 CAN1 总线消息
   if (hcan->Instance != CAN1)
   {
@@ -193,7 +192,8 @@ void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan)
     // RS02 / RobStride 电机反馈：扩展帧
     // 通过 ID_ExtId 解析电机数据
     // ------------------------------
-    RobStride_Motor_Analysis(&motor1, rxData, rxHeader.ExtId);
+	RobStride_Motor_Analysis(&motor1, rxData, rxHeader.ExtId);  
+//    RS02_CAN_Analysis_C(rxData, rxHeader.ExtId);
   }
   else if (rxHeader.IDE == CAN_ID_STD)
   {

@@ -1,38 +1,25 @@
-dm\dji3508.o: ..\lib\Dji3508.c
-dm\dji3508.o: ..\lib\Dji3508.h
-dm\dji3508.o: ../Core/Inc/main.h
-dm\dji3508.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h
-dm\dji3508.o: ../Core/Inc/stm32f4xx_hal_conf.h
-dm\dji3508.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h
-dm\dji3508.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h
-dm\dji3508.o: ../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h
-dm\dji3508.o: ../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f429xx.h
-dm\dji3508.o: ../Drivers/CMSIS/Include/core_cm4.h
-dm\dji3508.o: C:\Laboratory\keil\ARM\ARMCC\Bin\..\include\stdint.h
-dm\dji3508.o: ../Drivers/CMSIS/Include/cmsis_version.h
-dm\dji3508.o: ../Drivers/CMSIS/Include/cmsis_compiler.h
-dm\dji3508.o: ../Drivers/CMSIS/Include/cmsis_armcc.h
-dm\dji3508.o: ../Drivers/CMSIS/Include/mpu_armv7.h
-dm\dji3508.o: ../Drivers/CMSIS/Device/ST/STM32F4xx/Include/system_stm32f4xx.h
-dm\dji3508.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h
-dm\dji3508.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h
-dm\dji3508.o: C:\Laboratory\keil\ARM\ARMCC\Bin\..\include\stddef.h
-dm\dji3508.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc_ex.h
-dm\dji3508.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio.h
-dm\dji3508.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio_ex.h
-dm\dji3508.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_exti.h
-dm\dji3508.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h
-dm\dji3508.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma_ex.h
-dm\dji3508.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_cortex.h
-dm\dji3508.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_can.h
-dm\dji3508.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash.h
-dm\dji3508.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ex.h
-dm\dji3508.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ramfunc.h
-dm\dji3508.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h
-dm\dji3508.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h
-dm\dji3508.o: ../Core/Inc/can.h
-dm\dji3508.o: C:\Laboratory\keil\ARM\ARMCC\Bin\..\include\math.h
-dm\dji3508.o: C:\Laboratory\keil\ARM\ARMCC\Bin\..\include\stdlib.h
-dm\dji3508.o: ..\lib\dm_motor_drv.h
-dm\dji3508.o: ..\lib\bsp_can.h
-dm\dji3508.o: ..\lib\dm_motor_ctrl.h
+dm/dji3508.o: ..\lib\Dji3508.c ..\lib\Dji3508.h ..\Core\Inc\main.h \
+  ..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal.h \
+  ..\Core\Inc\stm32f4xx_hal_conf.h \
+  ..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_rcc.h \
+  ..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_def.h \
+  ..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h \
+  ..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f429xx.h \
+  ..\Drivers\CMSIS\Include\core_cm4.h \
+  ..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\system_stm32f4xx.h \
+  ..\Drivers\STM32F4xx_HAL_Driver\Inc\Legacy\stm32_hal_legacy.h \
+  ..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_rcc_ex.h \
+  ..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_gpio.h \
+  ..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_gpio_ex.h \
+  ..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_exti.h \
+  ..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dma.h \
+  ..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dma_ex.h \
+  ..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_cortex.h \
+  ..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_can.h \
+  ..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash.h \
+  ..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash_ex.h \
+  ..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash_ramfunc.h \
+  ..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pwr.h \
+  ..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pwr_ex.h \
+  ..\Core\Inc\can.h ..\lib\bsp_can.h ..\lib\dm_motor_drv.h \
+  ..\lib\dm_motor_ctrl.h
