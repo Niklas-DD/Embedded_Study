@@ -301,7 +301,7 @@ Section Cross References
     rs02_1.o(i._Z38RobStride_Motor_ProactiveEscalationSetP15RobStride_Motorh) refers to rs02_1.o(.data) for .data
     rs02_1.o(i._Z38RobStride_Motor_ProactiveEscalationSetP15RobStride_Motorh) refers to can.o(.bss) for hcan1
     rs02_1.o(i._Z9RS02_Taskv) refers to stm32f4xx_hal.o(i.HAL_GetTick) for HAL_GetTick
-    rs02_1.o(i._Z9RS02_Taskv) refers to rs02_1.o(i._Z27RobStride_Motor_Pos_controlP15RobStride_Motorff) for RobStride_Motor_Pos_control(RobStride_Motor*, float, float)
+    rs02_1.o(i._Z9RS02_Taskv) refers to rs02_1.o(i._Z29RobStride_Motor_Speed_controlP15RobStride_Motorff) for RobStride_Motor_Speed_control(RobStride_Motor*, float, float)
     rs02_1.o(i._Z9RS02_Taskv) refers to rs02_1.o(.data) for .data
     rs02_1.o(i._Z9RS02_Taskv) refers to main.o(.bss) for motor1
     rs02_1.o(.ARM.exidx) refers to rs02_1.o(i._Z26RobStride_Motor_MIT_EnableP15RobStride_Motor) for i._Z26RobStride_Motor_MIT_EnableP15RobStride_Motor
@@ -312,7 +312,7 @@ Section Cross References
     rs02_1.o(.ARM.exidx) refers to rs02_1.o(i._Z15Disenable_MotorP15RobStride_Motorh) for i._Z15Disenable_MotorP15RobStride_Motorh
     rs02_1.o(.ARM.exidx) refers to rs02_1.o(i._Z20RobStride_Motor_initP15RobStride_Motorhb) for i._Z20RobStride_Motor_initP15RobStride_Motorhb
     rs02_1.o(.ARM.exidx) refers to rs02_1.o(i._Z13RS02_UserInitv) for i._Z13RS02_UserInitv
-    rs02_1.o(.ARM.exidx) refers to rs02_1.o(i._Z27RobStride_Motor_Pos_controlP15RobStride_Motorff) for i._Z27RobStride_Motor_Pos_controlP15RobStride_Motorff
+    rs02_1.o(.ARM.exidx) refers to rs02_1.o(i._Z29RobStride_Motor_Speed_controlP15RobStride_Motorff) for i._Z29RobStride_Motor_Speed_controlP15RobStride_Motorff
     rs02_1.o(.ARM.exidx) refers to rs02_1.o(i._Z9RS02_Taskv) for i._Z9RS02_Taskv
     rs02_1.o(.ARM.exidx) refers to rs02_1.o(i._Z15uint16_to_floattffi) for i._Z15uint16_to_floattffi
     rs02_1.o(.ARM.exidx) refers to rs02_1.o(i._Z13Byte_to_floatPh) for i._Z13Byte_to_floatPh
@@ -320,9 +320,9 @@ Section Cross References
     rs02_1.o(.ARM.exidx) refers to rs02_1.o(i._Z24RobStride_Motor_AnalysisP15RobStride_MotorPhj) for i._Z24RobStride_Motor_AnalysisP15RobStride_MotorPhj
     rs02_1.o(.ARM.exidx) refers to rs02_1.o(i._Z20RobStride_Get_CAN_IDP15RobStride_Motor) for i._Z20RobStride_Get_CAN_IDP15RobStride_Motor
     rs02_1.o(.ARM.exidx) refers to rs02_1.o(i._Z28RobStride_Motor_move_controlP15RobStride_Motorfffff) for i._Z28RobStride_Motor_move_controlP15RobStride_Motorfffff
+    rs02_1.o(.ARM.exidx) refers to rs02_1.o(i._Z27RobStride_Motor_Pos_controlP15RobStride_Motorff) for i._Z27RobStride_Motor_Pos_controlP15RobStride_Motorff
     rs02_1.o(.ARM.exidx) refers to rs02_1.o(i._Z35RobStride_Motor_MIT_PositionControlP15RobStride_Motorff) for i._Z35RobStride_Motor_MIT_PositionControlP15RobStride_Motorff
     rs02_1.o(.ARM.exidx) refers to rs02_1.o(i._Z27RobStride_Motor_CSP_controlP15RobStride_Motorff) for i._Z27RobStride_Motor_CSP_controlP15RobStride_Motorff
-    rs02_1.o(.ARM.exidx) refers to rs02_1.o(i._Z29RobStride_Motor_Speed_controlP15RobStride_Motorff) for i._Z29RobStride_Motor_Speed_controlP15RobStride_Motorff
     rs02_1.o(.ARM.exidx) refers to rs02_1.o(i._Z31RobStride_Motor_current_controlP15RobStride_Motorf) for i._Z31RobStride_Motor_current_controlP15RobStride_Motorf
     rs02_1.o(.ARM.exidx) refers to rs02_1.o(i._Z32RobStride_Motor_Set_Zero_controlP15RobStride_Motor) for i._Z32RobStride_Motor_Set_Zero_controlP15RobStride_Motor
     rs02_1.o(.ARM.exidx) refers to rs02_1.o(i._Z10Set_CAN_IDP15RobStride_Motorh) for i._Z10Set_CAN_IDP15RobStride_Motorh
@@ -782,10 +782,10 @@ Removing Unused input sections from the image.
     Removing rs02_1.o(i._Z20RobStride_Get_CAN_IDP15RobStride_Motor), (60 bytes).
     Removing rs02_1.o(i._Z27RobStride_Motor_CSP_controlP15RobStride_Motorff), (114 bytes).
     Removing rs02_1.o(i._Z27RobStride_Motor_MIT_ControlP15RobStride_Motorfffff), (344 bytes).
+    Removing rs02_1.o(i._Z27RobStride_Motor_Pos_controlP15RobStride_Motorff), (118 bytes).
     Removing rs02_1.o(i._Z28RobStride_Motor_MotorModeSetP15RobStride_Motorh), (84 bytes).
     Removing rs02_1.o(i._Z28RobStride_Motor_move_controlP15RobStride_Motorfffff), (388 bytes).
     Removing rs02_1.o(i._Z29RobStride_Motor_MotorDataSaveP15RobStride_Motor), (80 bytes).
-    Removing rs02_1.o(i._Z29RobStride_Motor_Speed_controlP15RobStride_Motorff), (112 bytes).
     Removing rs02_1.o(i._Z30RobStride_Motor_BaudRateChangeP15RobStride_Motorh), (84 bytes).
     Removing rs02_1.o(i._Z30RobStride_Motor_MIT_SetMotorIdP15RobStride_Motorh), (68 bytes).
     Removing rs02_1.o(i._Z30RobStride_Motor_MIT_SetZeroPosP15RobStride_Motor), (64 bytes).
@@ -890,7 +890,7 @@ Removing Unused input sections from the image.
     Removing dm_motor_drv_1.o(.ARM.exidx), (8 bytes).
     Removing dm_motor_drv_1.o(.ARM.exidx), (8 bytes).
 
-366 unused section(s) (total 20542 bytes) removed from the image.
+366 unused section(s) (total 20548 bytes) removed from the image.
 
 ==============================================================================
 
@@ -1129,19 +1129,19 @@ Image Symbol Table
     i._Z24RobStride_Motor_AnalysisP15RobStride_MotorPhj 0x08001a90   Section        0  rs02_1.o(i._Z24RobStride_Motor_AnalysisP15RobStride_MotorPhj)
     i._Z26RobStride_Motor_MIT_EnableP15RobStride_Motor 0x08001d20   Section        0  rs02_1.o(i._Z26RobStride_Motor_MIT_EnableP15RobStride_Motor)
     i._Z27RobStride_Motor_MIT_DisableP15RobStride_Motor 0x08001d60   Section        0  rs02_1.o(i._Z27RobStride_Motor_MIT_DisableP15RobStride_Motor)
-    i._Z27RobStride_Motor_Pos_controlP15RobStride_Motorff 0x08001da0   Section        0  rs02_1.o(i._Z27RobStride_Motor_Pos_controlP15RobStride_Motorff)
-    i._Z29Get_RobStride_Motor_parameterP15RobStride_Motort 0x08001e18   Section        0  rs02_1.o(i._Z29Get_RobStride_Motor_parameterP15RobStride_Motort)
-    i._Z29Set_RobStride_Motor_parameterP15RobStride_Motortfc 0x08001e64   Section        0  rs02_1.o(i._Z29Set_RobStride_Motor_parameterP15RobStride_Motortfc)
-    i._Z9RS02_Taskv                          0x08001ee8   Section        0  rs02_1.o(i._Z9RS02_Taskv)
-    i._Z9mapFaultst                          0x08001f20   Section        0  rs02_1.o(i._Z9mapFaultst)
-    i.__NVIC_SetPriority                     0x08001f54   Section        0  stm32f4xx_hal_cortex.o(i.__NVIC_SetPriority)
-    __NVIC_SetPriority                       0x08001f55   Thumb Code    32  stm32f4xx_hal_cortex.o(i.__NVIC_SetPriority)
-    i.main                                   0x08001f74   Section        0  main.o(i.main)
-    x$fpl$fpinit                             0x08001fcc   Section       10  fpinit.o(x$fpl$fpinit)
-    $v0                                      0x08001fcc   Number         0  fpinit.o(x$fpl$fpinit)
-    .constdata                               0x08001fd6   Section       16  system_stm32f4xx.o(.constdata)
-    .constdata                               0x08001fe6   Section       30  rs02_1.o(.constdata)
-    Index_List                               0x08001fe6   Data          30  rs02_1.o(.constdata)
+    i._Z29Get_RobStride_Motor_parameterP15RobStride_Motort 0x08001da0   Section        0  rs02_1.o(i._Z29Get_RobStride_Motor_parameterP15RobStride_Motort)
+    i._Z29RobStride_Motor_Speed_controlP15RobStride_Motorff 0x08001dec   Section        0  rs02_1.o(i._Z29RobStride_Motor_Speed_controlP15RobStride_Motorff)
+    i._Z29Set_RobStride_Motor_parameterP15RobStride_Motortfc 0x08001e5c   Section        0  rs02_1.o(i._Z29Set_RobStride_Motor_parameterP15RobStride_Motortfc)
+    i._Z9RS02_Taskv                          0x08001ee0   Section        0  rs02_1.o(i._Z9RS02_Taskv)
+    i._Z9mapFaultst                          0x08001f18   Section        0  rs02_1.o(i._Z9mapFaultst)
+    i.__NVIC_SetPriority                     0x08001f4c   Section        0  stm32f4xx_hal_cortex.o(i.__NVIC_SetPriority)
+    __NVIC_SetPriority                       0x08001f4d   Thumb Code    32  stm32f4xx_hal_cortex.o(i.__NVIC_SetPriority)
+    i.main                                   0x08001f6c   Section        0  main.o(i.main)
+    x$fpl$fpinit                             0x08001fc4   Section       10  fpinit.o(x$fpl$fpinit)
+    $v0                                      0x08001fc4   Number         0  fpinit.o(x$fpl$fpinit)
+    .constdata                               0x08001fce   Section       16  system_stm32f4xx.o(.constdata)
+    .constdata                               0x08001fde   Section       30  rs02_1.o(.constdata)
+    Index_List                               0x08001fde   Data          30  rs02_1.o(.constdata)
     .data                                    0x20000000   Section        8  main.o(.data)
     .data                                    0x20000008   Section       12  stm32f4xx_hal.o(.data)
     .data                                    0x20000014   Section        4  system_stm32f4xx.o(.data)
@@ -1419,18 +1419,18 @@ Image Symbol Table
     RobStride_Motor_Analysis(RobStride_Motor*, unsigned char*, unsigned) 0x08001a91   Thumb Code   640  rs02_1.o(i._Z24RobStride_Motor_AnalysisP15RobStride_MotorPhj)
     RobStride_Motor_MIT_Enable(RobStride_Motor*) 0x08001d21   Thumb Code    48  rs02_1.o(i._Z26RobStride_Motor_MIT_EnableP15RobStride_Motor)
     RobStride_Motor_MIT_Disable(RobStride_Motor*) 0x08001d61   Thumb Code    48  rs02_1.o(i._Z27RobStride_Motor_MIT_DisableP15RobStride_Motor)
-    RobStride_Motor_Pos_control(RobStride_Motor*, float, float) 0x08001da1   Thumb Code   118  rs02_1.o(i._Z27RobStride_Motor_Pos_controlP15RobStride_Motorff)
-    Get_RobStride_Motor_parameter(RobStride_Motor*, unsigned short) 0x08001e19   Thumb Code    66  rs02_1.o(i._Z29Get_RobStride_Motor_parameterP15RobStride_Motort)
-    Set_RobStride_Motor_parameter(RobStride_Motor*, unsigned short, float, char) 0x08001e65   Thumb Code   122  rs02_1.o(i._Z29Set_RobStride_Motor_parameterP15RobStride_Motortfc)
-    RS02_Task()                              0x08001ee9   Thumb Code    48  rs02_1.o(i._Z9RS02_Taskv)
-    mapFaults(unsigned short)                0x08001f21   Thumb Code    52  rs02_1.o(i._Z9mapFaultst)
-    main                                     0x08001f75   Thumb Code    76  main.o(i.main)
-    _fp_init                                 0x08001fcd   Thumb Code    10  fpinit.o(x$fpl$fpinit)
-    __fplib_config_fpu_vfp                   0x08001fd5   Thumb Code     0  fpinit.o(x$fpl$fpinit)
-    __fplib_config_pureend_doubles           0x08001fd5   Thumb Code     0  fpinit.o(x$fpl$fpinit)
-    AHBPrescTable                            0x08001fd6   Data          16  system_stm32f4xx.o(.constdata)
-    Region$$Table$$Base                      0x08002004   Number         0  anon$$obj.o(Region$$Table)
-    Region$$Table$$Limit                     0x08002024   Number         0  anon$$obj.o(Region$$Table)
+    Get_RobStride_Motor_parameter(RobStride_Motor*, unsigned short) 0x08001da1   Thumb Code    66  rs02_1.o(i._Z29Get_RobStride_Motor_parameterP15RobStride_Motort)
+    RobStride_Motor_Speed_control(RobStride_Motor*, float, float) 0x08001ded   Thumb Code   112  rs02_1.o(i._Z29RobStride_Motor_Speed_controlP15RobStride_Motorff)
+    Set_RobStride_Motor_parameter(RobStride_Motor*, unsigned short, float, char) 0x08001e5d   Thumb Code   122  rs02_1.o(i._Z29Set_RobStride_Motor_parameterP15RobStride_Motortfc)
+    RS02_Task()                              0x08001ee1   Thumb Code    48  rs02_1.o(i._Z9RS02_Taskv)
+    mapFaults(unsigned short)                0x08001f19   Thumb Code    52  rs02_1.o(i._Z9mapFaultst)
+    main                                     0x08001f6d   Thumb Code    76  main.o(i.main)
+    _fp_init                                 0x08001fc5   Thumb Code    10  fpinit.o(x$fpl$fpinit)
+    __fplib_config_fpu_vfp                   0x08001fcd   Thumb Code     0  fpinit.o(x$fpl$fpinit)
+    __fplib_config_pureend_doubles           0x08001fcd   Thumb Code     0  fpinit.o(x$fpl$fpinit)
+    AHBPrescTable                            0x08001fce   Data          16  system_stm32f4xx.o(.constdata)
+    Region$$Table$$Base                      0x08001ffc   Number         0  anon$$obj.o(Region$$Table)
+    Region$$Table$$Limit                     0x0800201c   Number         0  anon$$obj.o(Region$$Table)
     rxData                                   0x20000000   Data           8  main.o(.data)
     uwTickFreq                               0x20000008   Data           1  stm32f4xx_hal.o(.data)
     uwTickPrio                               0x2000000c   Data           4  stm32f4xx_hal.o(.data)
@@ -1454,9 +1454,9 @@ Memory Map of the image
 
   Image Entry point : 0x080001ad
 
-  Load Region LR_IROM1 (Base: 0x08000000, Size: 0x00002050, Max: 0x00080000, ABSOLUTE)
+  Load Region LR_IROM1 (Base: 0x08000000, Size: 0x00002048, Max: 0x00080000, ABSOLUTE)
 
-    Execution Region ER_IROM1 (Exec base: 0x08000000, Load base: 0x08000000, Size: 0x00002024, Max: 0x00080000, ABSOLUTE)
+    Execution Region ER_IROM1 (Exec base: 0x08000000, Load base: 0x08000000, Size: 0x0000201c, Max: 0x00080000, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
@@ -1593,35 +1593,34 @@ Memory Map of the image
     0x08001a90   0x08001a90   0x00000290   Code   RO         2074    i._Z24RobStride_Motor_AnalysisP15RobStride_MotorPhj  rs02_1.o
     0x08001d20   0x08001d20   0x00000040   Code   RO         2075    i._Z26RobStride_Motor_MIT_EnableP15RobStride_Motor  rs02_1.o
     0x08001d60   0x08001d60   0x00000040   Code   RO         2078    i._Z27RobStride_Motor_MIT_DisableP15RobStride_Motor  rs02_1.o
-    0x08001da0   0x08001da0   0x00000076   Code   RO         2079    i._Z27RobStride_Motor_Pos_controlP15RobStride_Motorff  rs02_1.o
-    0x08001e16   0x08001e16   0x00000002   PAD
-    0x08001e18   0x08001e18   0x0000004c   Code   RO         2082    i._Z29Get_RobStride_Motor_parameterP15RobStride_Motort  rs02_1.o
-    0x08001e64   0x08001e64   0x00000084   Code   RO         2085    i._Z29Set_RobStride_Motor_parameterP15RobStride_Motortfc  rs02_1.o
-    0x08001ee8   0x08001ee8   0x00000038   Code   RO         2096    i._Z9RS02_Taskv     rs02_1.o
-    0x08001f20   0x08001f20   0x00000034   Code   RO         2097    i._Z9mapFaultst     rs02_1.o
-    0x08001f54   0x08001f54   0x00000020   Code   RO         1508    i.__NVIC_SetPriority  stm32f4xx_hal_cortex.o
-    0x08001f74   0x08001f74   0x00000058   Code   RO           16    i.main              main.o
-    0x08001fcc   0x08001fcc   0x0000000a   Code   RO         2779    x$fpl$fpinit        fz_wm.l(fpinit.o)
-    0x08001fd6   0x08001fd6   0x00000010   Data   RO         1912    .constdata          system_stm32f4xx.o
-    0x08001fe6   0x08001fe6   0x0000001e   Data   RO         2131    .constdata          rs02_1.o
-    0x08002004   0x08002004   0x00000020   Data   RO         2835    Region$$Table       anon$$obj.o
+    0x08001da0   0x08001da0   0x0000004c   Code   RO         2082    i._Z29Get_RobStride_Motor_parameterP15RobStride_Motort  rs02_1.o
+    0x08001dec   0x08001dec   0x00000070   Code   RO         2084    i._Z29RobStride_Motor_Speed_controlP15RobStride_Motorff  rs02_1.o
+    0x08001e5c   0x08001e5c   0x00000084   Code   RO         2085    i._Z29Set_RobStride_Motor_parameterP15RobStride_Motortfc  rs02_1.o
+    0x08001ee0   0x08001ee0   0x00000038   Code   RO         2096    i._Z9RS02_Taskv     rs02_1.o
+    0x08001f18   0x08001f18   0x00000034   Code   RO         2097    i._Z9mapFaultst     rs02_1.o
+    0x08001f4c   0x08001f4c   0x00000020   Code   RO         1508    i.__NVIC_SetPriority  stm32f4xx_hal_cortex.o
+    0x08001f6c   0x08001f6c   0x00000058   Code   RO           16    i.main              main.o
+    0x08001fc4   0x08001fc4   0x0000000a   Code   RO         2779    x$fpl$fpinit        fz_wm.l(fpinit.o)
+    0x08001fce   0x08001fce   0x00000010   Data   RO         1912    .constdata          system_stm32f4xx.o
+    0x08001fde   0x08001fde   0x0000001e   Data   RO         2131    .constdata          rs02_1.o
+    0x08001ffc   0x08001ffc   0x00000020   Data   RO         2835    Region$$Table       anon$$obj.o
 
 
-    Execution Region RW_IRAM2 (Exec base: 0x10000000, Load base: 0x08002050, Size: 0x00000000, Max: 0x00010000, ABSOLUTE)
+    Execution Region RW_IRAM2 (Exec base: 0x10000000, Load base: 0x08002048, Size: 0x00000000, Max: 0x00010000, ABSOLUTE)
 
     **** No section assigned to this execution region ****
 
 
-    Execution Region RW_IRAM1 (Exec base: 0x20000000, Load base: 0x08002024, Size: 0x000008c0, Max: 0x00030000, ABSOLUTE)
+    Execution Region RW_IRAM1 (Exec base: 0x20000000, Load base: 0x0800201c, Size: 0x000008c0, Max: 0x00030000, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
-    0x20000000   0x08002024   0x00000008   Data   RW           22    .data               main.o
-    0x20000008   0x0800202c   0x0000000c   Data   RW         1669    .data               stm32f4xx_hal.o
-    0x20000014   0x08002038   0x00000004   Data   RW         1914    .data               system_stm32f4xx.o
-    0x20000018   0x0800203c   0x0000000c   Data   RW         2132    .data               rs02_1.o
-    0x20000024   0x08002048   0x00000008   Data   RW         2355    .data               dji3508.o
-    0x2000002c   0x08002050   0x00000004   PAD
+    0x20000000   0x0800201c   0x00000008   Data   RW           22    .data               main.o
+    0x20000008   0x08002024   0x0000000c   Data   RW         1669    .data               stm32f4xx_hal.o
+    0x20000014   0x08002030   0x00000004   Data   RW         1914    .data               system_stm32f4xx.o
+    0x20000018   0x08002034   0x0000000c   Data   RW         2132    .data               rs02_1.o
+    0x20000024   0x08002040   0x00000008   Data   RW         2355    .data               dji3508.o
+    0x2000002c   0x08002048   0x00000004   PAD
     0x20000030        -       0x00000130   Zero   RW           21    .bss                main.o
     0x20000160        -       0x00000028   Zero   RW          299    .bss                can.o
     0x20000188        -       0x000000c0   Zero   RW         2353    .bss                dji3508.o
@@ -1642,7 +1641,7 @@ Image component sizes
        774         86          0          8        216     630010   dji3508.o
         60          6          0          0          0     707751   gpio.o
        360         38          0          8        304     708019   main.o
-      1698        124         30         12          0      13284   rs02_1.o
+      1692        124         30         12          0      13286   rs02_1.o
         64         26        428          0       1536        844   startup_stm32f429xx.o
        180         28          0         12          0       9557   stm32f4xx_hal.o
       1638          6          0          0          0      14307   stm32f4xx_hal_can.o
@@ -1654,9 +1653,9 @@ Image component sizes
         16          4         16          4          0       1127   system_stm32f4xx.o
 
     ----------------------------------------------------------------------
-      7114        468        506         44       2100    2131535   Object Totals
+      7106        468        506         44       2100    2131537   Object Totals
          0          0         32          0          0          0   (incl. Generated)
-        18          0          0          0          4          0   (incl. Padding)
+        16          0          0          0          4          0   (incl. Padding)
 
     ----------------------------------------------------------------------
 
@@ -1707,15 +1706,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-      7722        484        506         44       2196    2125955   Grand Totals
-      7722        484        506         44       2196    2125955   ELF Image Totals
-      7722        484        506         44          0          0   ROM Totals
+      7714        484        506         44       2196    2125957   Grand Totals
+      7714        484        506         44       2196    2125957   ELF Image Totals
+      7714        484        506         44          0          0   ROM Totals
 
 ==============================================================================
 
-    Total RO  Size (Code + RO Data)                 8228 (   8.04kB)
+    Total RO  Size (Code + RO Data)                 8220 (   8.03kB)
     Total RW  Size (RW Data + ZI Data)              2240 (   2.19kB)
-    Total ROM Size (Code + RO Data + RW Data)       8272 (   8.08kB)
+    Total ROM Size (Code + RO Data + RW Data)       8264 (   8.07kB)
 
 ==============================================================================
 

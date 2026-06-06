@@ -13,8 +13,9 @@
 #define KD_MAX 5.0f
 #define T_MIN -17.0f
 #define T_MAX 17.0f
-#define RS02_TARGET_POS_RAD      10.00f   //目标位置
-#define RS02_LIMIT_SPEED_RAD_S   3.0f    // 位置控制最大速度
+#define RS02_TARGET_POS_RAD      10.00f
+#define RS02_LIMIT_SPEED_RAD_S   0.5f
+
 
 extern CAN_HandleTypeDef hcan1;
 uint32_t Mailboxc;
@@ -39,8 +40,8 @@ void RS02_UserInit(void)
     Get_RobStride_Motor_parameter(&motor1, 0x7005); // 读取当前控制模式参数
     HAL_Delay(20);                                  // 延时等待响应
 
-//    Set_RobStride_Motor_parameter(&motor1, 0x7005, Speed_control_mode, Set_mode); // 设置为速度控制模式
-	Set_RobStride_Motor_parameter(&motor1, 0x7005, Pos_control_mode, Set_mode);
+    Set_RobStride_Motor_parameter(&motor1, 0x7005, Speed_control_mode, Set_mode); // 设置为速度控制模式
+	//Set_RobStride_Motor_parameter(&motor1, 0x7005, Pos_control_mode, Set_mode);
     HAL_Delay(5);                                                                 // 延时等待
 
     Set_RobStride_Motor_parameter(&motor1, 0x7018, RS02_LIMIT_CURRENT_A, Set_parameter); // 设置电流限制为2A
@@ -69,8 +70,8 @@ void RS02_Task(void)
     {
         rs02_last_cmd_tick = HAL_GetTick(); // 更新时间戳
         // 发送速度控制指令：目标速度1rad/s，电流限制2A
-        //RobStride_Motor_Speed_control(&motor1, RS02_TARGET_SPEED_RAD_S, RS02_LIMIT_CURRENT_A);
-		RobStride_Motor_Pos_control(&motor1, RS02_LIMIT_SPEED_RAD_S, RS02_TARGET_POS_RAD);
+        RobStride_Motor_Speed_control(&motor1, RS02_TARGET_SPEED_RAD_S, RS02_LIMIT_CURRENT_A);
+		//RobStride_Motor_Pos_control(&motor1, RS02_LIMIT_SPEED_RAD_S, RS02_TARGET_POS_RAD);
     }
 }
 // -------------------- 数据转换工具 --------------------

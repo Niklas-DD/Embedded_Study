@@ -3,7 +3,7 @@
 <title>Static Call Graph - [DM\DM.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image DM\DM.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060528: Last Updated: Sat Jun 06 11:30:51 2026
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060528: Last Updated: Sat Jun 06 11:48:15 2026
 <BR><P>
 <H3>Maximum Stack Usage =        184 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -779,7 +779,6 @@ Global Symbols
 </UL>
 <BR>[Called By]<UL><LI><a href="#[ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RS02_UserInit()
 <LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
-<LI><a href="#[b9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RobStride_Motor_Pos_control(RobStride_Motor*, float, float)
 </UL>
 
 <P><STRONG><a name="[90]"></a>HAL_GPIO_Init</STRONG> (Thumb, 510 bytes, Stack size 40 bytes, stm32f4xx_hal_gpio.o(i.HAL_GPIO_Init))
@@ -943,7 +942,7 @@ Global Symbols
 <LI><a href="#[a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RobStride_Motor_MIT_Enable(RobStride_Motor*)
 </UL>
 <BR>[Called By]<UL><LI><a href="#[ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RS02_UserInit()
-<LI><a href="#[b9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RobStride_Motor_Pos_control(RobStride_Motor*, float, float)
+<LI><a href="#[b9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RobStride_Motor_Speed_control(RobStride_Motor*, float, float)
 </UL>
 
 <P><STRONG><a name="[a9]"></a>bsp_can_init()</STRONG> (Thumb, 24 bytes, Stack size 8 bytes, dji3508.o(i._Z12bsp_can_initv))
@@ -1068,24 +1067,23 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Disenable_Motor(RobStride_Motor*, unsigned char)
 </UL>
 
-<P><STRONG><a name="[b9]"></a>RobStride_Motor_Pos_control(RobStride_Motor*, float, float)</STRONG> (Thumb, 118 bytes, Stack size 16 bytes, rs02_1.o(i._Z27RobStride_Motor_Pos_controlP15RobStride_Motorff))
-<BR><BR>[Stack]<UL><LI>Max Depth = 116<LI>Call Chain = RobStride_Motor_Pos_control(RobStride_Motor*, float, float) &rArr; Enable_Motor(RobStride_Motor*) &rArr; RobStride_Motor_MIT_Enable(RobStride_Motor*) &rArr; HAL_CAN_AddTxMessage
-</UL>
-<BR>[Calls]<UL><LI><a href="#[98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_Delay
-<LI><a href="#[b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Set_RobStride_Motor_parameter(RobStride_Motor*, unsigned short, float, char)
-<LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Get_RobStride_Motor_parameter(RobStride_Motor*, unsigned short)
-<LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Enable_Motor(RobStride_Motor*)
-</UL>
-<BR>[Called By]<UL><LI><a href="#[ba]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RS02_Task()
-</UL>
-
 <P><STRONG><a name="[af]"></a>Get_RobStride_Motor_parameter(RobStride_Motor*, unsigned short)</STRONG> (Thumb, 66 bytes, Stack size 40 bytes, rs02_1.o(i._Z29Get_RobStride_Motor_parameterP15RobStride_Motort))
 <BR><BR>[Stack]<UL><LI>Max Depth = 60<LI>Call Chain = Get_RobStride_Motor_parameter(RobStride_Motor*, unsigned short) &rArr; HAL_CAN_AddTxMessage
 </UL>
 <BR>[Calls]<UL><LI><a href="#[a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_CAN_AddTxMessage
 </UL>
 <BR>[Called By]<UL><LI><a href="#[ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RS02_UserInit()
-<LI><a href="#[b9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RobStride_Motor_Pos_control(RobStride_Motor*, float, float)
+<LI><a href="#[b9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RobStride_Motor_Speed_control(RobStride_Motor*, float, float)
+</UL>
+
+<P><STRONG><a name="[b9]"></a>RobStride_Motor_Speed_control(RobStride_Motor*, float, float)</STRONG> (Thumb, 112 bytes, Stack size 16 bytes, rs02_1.o(i._Z29RobStride_Motor_Speed_controlP15RobStride_Motorff))
+<BR><BR>[Stack]<UL><LI>Max Depth = 116<LI>Call Chain = RobStride_Motor_Speed_control(RobStride_Motor*, float, float) &rArr; Enable_Motor(RobStride_Motor*) &rArr; RobStride_Motor_MIT_Enable(RobStride_Motor*) &rArr; HAL_CAN_AddTxMessage
+</UL>
+<BR>[Calls]<UL><LI><a href="#[b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Set_RobStride_Motor_parameter(RobStride_Motor*, unsigned short, float, char)
+<LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Get_RobStride_Motor_parameter(RobStride_Motor*, unsigned short)
+<LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Enable_Motor(RobStride_Motor*)
+</UL>
+<BR>[Called By]<UL><LI><a href="#[ba]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RS02_Task()
 </UL>
 
 <P><STRONG><a name="[b0]"></a>Set_RobStride_Motor_parameter(RobStride_Motor*, unsigned short, float, char)</STRONG> (Thumb, 122 bytes, Stack size 48 bytes, rs02_1.o(i._Z29Set_RobStride_Motor_parameterP15RobStride_Motortfc))
@@ -1094,15 +1092,15 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_CAN_AddTxMessage
 </UL>
 <BR>[Called By]<UL><LI><a href="#[ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RS02_UserInit()
-<LI><a href="#[b9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RobStride_Motor_Pos_control(RobStride_Motor*, float, float)
+<LI><a href="#[b9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RobStride_Motor_Speed_control(RobStride_Motor*, float, float)
 <LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Disenable_Motor(RobStride_Motor*, unsigned char)
 </UL>
 
 <P><STRONG><a name="[ba]"></a>RS02_Task()</STRONG> (Thumb, 48 bytes, Stack size 8 bytes, rs02_1.o(i._Z9RS02_Taskv))
-<BR><BR>[Stack]<UL><LI>Max Depth = 124<LI>Call Chain = RS02_Task() &rArr; RobStride_Motor_Pos_control(RobStride_Motor*, float, float) &rArr; Enable_Motor(RobStride_Motor*) &rArr; RobStride_Motor_MIT_Enable(RobStride_Motor*) &rArr; HAL_CAN_AddTxMessage
+<BR><BR>[Stack]<UL><LI>Max Depth = 124<LI>Call Chain = RS02_Task() &rArr; RobStride_Motor_Speed_control(RobStride_Motor*, float, float) &rArr; Enable_Motor(RobStride_Motor*) &rArr; RobStride_Motor_MIT_Enable(RobStride_Motor*) &rArr; HAL_CAN_AddTxMessage
 </UL>
 <BR>[Calls]<UL><LI><a href="#[8e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GetTick
-<LI><a href="#[b9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RobStride_Motor_Pos_control(RobStride_Motor*, float, float)
+<LI><a href="#[b9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RobStride_Motor_Speed_control(RobStride_Motor*, float, float)
 </UL>
 <BR>[Called By]<UL><LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
