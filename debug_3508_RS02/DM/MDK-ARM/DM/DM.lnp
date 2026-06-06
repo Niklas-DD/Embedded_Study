@@ -20,10 +20,10 @@
 "dm\stm32f4xx_hal.o"
 "dm\stm32f4xx_hal_exti.o"
 "dm\system_stm32f4xx.o"
-"dm\dm_motor_ctrl.o"
-"dm\rs02.o"
+"dm\dm_motor_ctrl_1.o"
+"dm\rs02_1.o"
 "dm\dji3508.o"
-"dm\dm_motor_drv.o"
+"dm\dm_motor_drv_1.o"
 --strict --scatter "DM\DM.sct"
 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers

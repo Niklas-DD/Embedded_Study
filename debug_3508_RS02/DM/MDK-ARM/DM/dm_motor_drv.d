@@ -1,24 +1,34 @@
-dm/dm_motor_drv.o: ..\lib\dm_motor_drv.c ..\lib\dm_motor_drv.h \
-  ..\Core\Inc\main.h ..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal.h \
-  ..\Core\Inc\stm32f4xx_hal_conf.h \
-  ..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_rcc.h \
-  ..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_def.h \
-  ..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h \
-  ..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f429xx.h \
-  ..\Drivers\CMSIS\Include\core_cm4.h \
-  ..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\system_stm32f4xx.h \
-  ..\Drivers\STM32F4xx_HAL_Driver\Inc\Legacy\stm32_hal_legacy.h \
-  ..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_rcc_ex.h \
-  ..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_gpio.h \
-  ..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_gpio_ex.h \
-  ..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_exti.h \
-  ..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dma.h \
-  ..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dma_ex.h \
-  ..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_cortex.h \
-  ..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_can.h \
-  ..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash.h \
-  ..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash_ex.h \
-  ..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash_ramfunc.h \
-  ..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pwr.h \
-  ..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pwr_ex.h \
-  ..\Core\Inc\can.h ..\lib\bsp_can.h
+dm\dm_motor_drv.o: ..\lib\dm_motor_drv.c
+dm\dm_motor_drv.o: ..\lib\dm_motor_drv.h
+dm\dm_motor_drv.o: ../Core/Inc/main.h
+dm\dm_motor_drv.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h
+dm\dm_motor_drv.o: ../Core/Inc/stm32f4xx_hal_conf.h
+dm\dm_motor_drv.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h
+dm\dm_motor_drv.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h
+dm\dm_motor_drv.o: ../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h
+dm\dm_motor_drv.o: ../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f429xx.h
+dm\dm_motor_drv.o: ../Drivers/CMSIS/Include/core_cm4.h
+dm\dm_motor_drv.o: C:\Laboratory\keil\ARM\ARMCC\Bin\..\include\stdint.h
+dm\dm_motor_drv.o: ../Drivers/CMSIS/Include/cmsis_version.h
+dm\dm_motor_drv.o: ../Drivers/CMSIS/Include/cmsis_compiler.h
+dm\dm_motor_drv.o: ../Drivers/CMSIS/Include/cmsis_armcc.h
+dm\dm_motor_drv.o: ../Drivers/CMSIS/Include/mpu_armv7.h
+dm\dm_motor_drv.o: ../Drivers/CMSIS/Device/ST/STM32F4xx/Include/system_stm32f4xx.h
+dm\dm_motor_drv.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h
+dm\dm_motor_drv.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h
+dm\dm_motor_drv.o: C:\Laboratory\keil\ARM\ARMCC\Bin\..\include\stddef.h
+dm\dm_motor_drv.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc_ex.h
+dm\dm_motor_drv.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio.h
+dm\dm_motor_drv.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio_ex.h
+dm\dm_motor_drv.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_exti.h
+dm\dm_motor_drv.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h
+dm\dm_motor_drv.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma_ex.h
+dm\dm_motor_drv.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_cortex.h
+dm\dm_motor_drv.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_can.h
+dm\dm_motor_drv.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash.h
+dm\dm_motor_drv.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ex.h
+dm\dm_motor_drv.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ramfunc.h
+dm\dm_motor_drv.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h
+dm\dm_motor_drv.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h
+dm\dm_motor_drv.o: ../Core/Inc/can.h
+dm\dm_motor_drv.o: ..\lib\bsp_can.h

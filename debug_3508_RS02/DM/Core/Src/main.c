@@ -26,6 +26,8 @@
 #include "bsp_can.h"
 #include "RS02.h"
 #include "Dji3508.h"
+
+//#include "RobStride.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -46,7 +48,8 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-RobStride_Motor motor1; 
+//RobStride_Motor motor1; 
+RobStride_Motor motor1;
 Motor3LoopCtrl_t motor1_3loop;
 extern CAN_HandleTypeDef hcan1; // 外部声明CAN句柄
 uint8_t rxData[8] = {0};
@@ -60,11 +63,6 @@ void SystemClock_Config(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-/**
- * @brief RS02电机用户初始化函数
- * @note 配置CAN通信、设置电机参数并使能电机
- */
-
 /* USER CODE END 0 */
 
 /**
@@ -99,7 +97,7 @@ int main(void)
   MX_CAN1_Init();
   /* USER CODE BEGIN 2 */
   // RS02和3508电机的can总线同时初始化
- RS02_UserInit();
+	RS02_UserInit();
   // 3508的三环控制器初始化
   Motor3Loop_Init(&motor1_3loop);
   // RS02电机初始化
@@ -111,7 +109,7 @@ int main(void)
   {
 	RS02_Task();
     motor1_3loop.target_speed = 500;
-    int16_t cur_cmd = Motor3Loop_Update(&motor1_3loop, &moto_chassis[1], 1); // 1表示恒速模式
+	int16_t cur_cmd = Motor3Loop_Update(&motor1_3loop, &moto_chassis[1], 1); // 1表示恒速模式
     send_chassis_cur1_4(0, cur_cmd, 0);
     HAL_Delay(10);
     /* USER CODE END WHILE */
@@ -165,12 +163,12 @@ void SystemClock_Config(void)
   }
 }
 
-/* USER CODE BEGIN 4 */
-/**
- * @brief  CAN 接收 FIFO0 消息 pending 回调
- * @param  hcan: 指向 CAN 外设句柄
- * @note   同时解析 RS02 电机和 DJI 3508 电机的反馈
- */
+///* USER CODE BEGIN 4 */
+///**
+// * @brief  CAN 接收 FIFO0 消息 pending 回调
+// * @param  hcan: 指向 CAN 外设句柄
+// * @note   同时解析 RS02 电机和 DJI 3508 电机的反馈
+// */
 void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan)
 {
   CAN_RxHeaderTypeDef rxHeader; // 接收帧头
